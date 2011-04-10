@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/repository/odcctools/!svn/ver/159/trunk/files
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repository/odcctools/!svn/ver/101/trunk/files/Makefile.in
+END
+configure.ac
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/repository/odcctools/!svn/ver/159/trunk/files/configure.ac
+END
+config.guess
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repository/odcctools/!svn/ver/65/trunk/files/config.guess
+END
+config.sub
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/repository/odcctools/!svn/ver/65/trunk/files/config.sub
+END
+install-sh
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repository/odcctools/!svn/ver/5/trunk/files/install-sh
+END

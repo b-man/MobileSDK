@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repository/odcctools/!svn/ver/159/trunk/patches/ld64
+END
+LTOReader-setasmpath.diff
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/odcctools/!svn/ver/157/trunk/patches/ld64/LTOReader-setasmpath.diff
+END
+Options_h_includes.diff
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/repository/odcctools/!svn/ver/151/trunk/patches/ld64/Options_h_includes.diff
+END
+remove_tmp_math_hack.diff
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/odcctools/!svn/ver/151/trunk/patches/ld64/remove_tmp_math_hack.diff
+END
+Options-ctype.diff
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repository/odcctools/!svn/ver/134/trunk/patches/ld64/Options-ctype.diff
+END
+Options-stdarg.diff
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/repository/odcctools/!svn/ver/134/trunk/patches/ld64/Options-stdarg.diff
+END
+ld_cpp_signal.diff
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repository/odcctools/!svn/ver/151/trunk/patches/ld64/ld_cpp_signal.diff
+END
+Options-defcross.diff
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repository/odcctools/!svn/ver/151/trunk/patches/ld64/Options-defcross.diff
+END
+FileAbstraction-inline.diff
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repository/odcctools/!svn/ver/137/trunk/patches/ld64/FileAbstraction-inline.diff
+END
+Options-config_h.diff
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repository/odcctools/!svn/ver/151/trunk/patches/ld64/Options-config_h.diff
+END
+cstdio.diff
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repository/odcctools/!svn/ver/159/trunk/patches/ld64/cstdio.diff
+END
+Thread64_MachOWriterExecutable.diff
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repository/odcctools/!svn/ver/151/trunk/patches/ld64/Thread64_MachOWriterExecutable.diff
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repository/odcctools/!svn/ver/159/trunk/patches
+END
+force_load.diff
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repository/odcctools/!svn/ver/155/trunk/patches/force_load.diff
+END
+ld-sysroot.diff
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repository/odcctools/!svn/ver/151/trunk/patches/ld-sysroot.diff
+END

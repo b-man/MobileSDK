@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repository/odcctools/!svn/ver/151/trunk/files/include/foreign
+END
+libc.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repository/odcctools/!svn/ver/58/trunk/files/include/foreign/libc.h
+END
+AvailabilityMacros.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repository/odcctools/!svn/ver/81/trunk/files/include/foreign/AvailabilityMacros.h
+END
+ar.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/odcctools/!svn/ver/59/trunk/files/include/foreign/ar.h
+END

@@ -1,0 +1,22 @@
+--- Makefile.old	2011-03-29 12:50:01.207904247 -0400
++++ Makefile	2011-03-29 13:08:42.631642140 -0400
+@@ -56,7 +56,7 @@ $(SYMROOT)/crt1.v2.o: start.s crt.c dyld
+ 	$(CC) -r $(ARCH_CFLAGS) -Os $(OS_MIN_V2) -nostdlib -keep_private_externs $^ -o $@  -DCRT
+ 
+ $(SYMROOT)/crt1.v3.o: start.s crt.c
+-	$(CC) -r $(ARCH_CFLAGS) -Os $(OS_MIN_V3) -nostdlib -keep_private_externs $^ -o $@  -DADD_PROGRAM_VARS 
++#	$(CC) -r $(ARCH_CFLAGS) -Os $(OS_MIN_V3) -nostdlib -keep_private_externs $^ -o $@  -DADD_PROGRAM_VARS 
+ 
+ 
+ $(SYMROOT)/gcrt1.o: start.s crt.c dyld_glue.s 
+@@ -99,8 +99,9 @@ install_iphone:
+ 
+ 
+ install_macosx:
+-	cp $(SYMROOT)/crt1.v3.o		$(DSTROOT)$(USRLIBDIR)/crt1.10.6.o
++#	cp $(SYMROOT)/crt1.v3.o		$(DSTROOT)$(USRLIBDIR)/crt1.10.6.o
+ 	cp $(SYMROOT)/crt1.v2.o		$(DSTROOT)$(USRLIBDIR)/crt1.10.5.o
++	cd $(DSTROOT)$(USRLIBDIR) && ln -sv crt1.10.5.o crt1.10.6.o
+ 	cp $(SYMROOT)/crt1.v1.o		$(DSTROOT)$(USRLIBDIR)/crt1.o
+ 	cp $(SYMROOT)/gcrt1.o		$(DSTROOT)$(USRLIBDIR)/gcrt1.o
+ 	cp $(SYMROOT)/dylib1.v2.o	$(DSTROOT)$(USRLIBDIR)/dylib1.10.5.o

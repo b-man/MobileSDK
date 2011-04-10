@@ -1,0 +1,21 @@
+--- ./print_objc.c.old	2011-03-28 12:43:05.475577439 -0400
++++ ./print_objc.c	2011-03-28 12:07:13.583819940 -0400
+@@ -38,6 +38,18 @@
+ #include "ofile_print.h"
+ 
++/*
++ * Old ABI type legacy support
++ */
++
++#ifdef __OBJC2__
++#define CLS_GETINFO(cls,infomask)        ((cls)->info & (infomask))
++// class is not a metaclass
++#define CLS_CLASS               0x1
++// class is a metaclass
++#define CLS_META                0x2
++#endif
++
+ /*
+  * Here we need structures that have the same memory layout and size as the
+  * 32-bit Objective-C 1 meta data structures.
+  *

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repository/odcctools/!svn/ver/159/trunk/patches/as
+END
+use_PRI_macros.diff
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repository/odcctools/!svn/ver/151/trunk/patches/as/use_PRI_macros.diff
+END
+input-scrub.diff
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repository/odcctools/!svn/ver/151/trunk/patches/as/input-scrub.diff
+END
+relax.diff
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repository/odcctools/!svn/ver/151/trunk/patches/as/relax.diff
+END
+arm.c.diff
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repository/odcctools/!svn/ver/151/trunk/patches/as/arm.c.diff
+END
+bignum.diff
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repository/odcctools/!svn/ver/151/trunk/patches/as/bignum.diff
+END
+driver.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/repository/odcctools/!svn/ver/159/trunk/patches/as/driver.c
+END
+getc_unlocked.diff
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repository/odcctools/!svn/ver/151/trunk/patches/as/getc_unlocked.diff
+END
+messages.diff
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repository/odcctools/!svn/ver/159/trunk/patches/as/messages.diff
+END

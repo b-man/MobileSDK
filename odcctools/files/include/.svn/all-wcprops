@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repository/odcctools/!svn/ver/151/trunk/files/include
+END
+config.h.in
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repository/odcctools/!svn/ver/5/trunk/files/include/config.h.in
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/odcctools/!svn/ver/151/trunk/files/include/Makefile.in
+END
+extern.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repository/odcctools/!svn/ver/38/trunk/files/include/extern.h
+END

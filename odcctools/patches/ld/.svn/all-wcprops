@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repository/odcctools/!svn/ver/159/trunk/patches/ld
+END
+ld-pb.diff
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repository/odcctools/!svn/ver/151/trunk/patches/ld/ld-pb.diff
+END
+ld-nomach.diff
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/odcctools/!svn/ver/159/trunk/patches/ld/ld-nomach.diff
+END
+uuid-nonsmodule.diff
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repository/odcctools/!svn/ver/159/trunk/patches/ld/uuid-nonsmodule.diff
+END

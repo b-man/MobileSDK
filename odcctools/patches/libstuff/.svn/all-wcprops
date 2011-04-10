@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repository/odcctools/!svn/ver/159/trunk/patches/libstuff
+END
+macosx_deployment_target_default_105.diff
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repository/odcctools/!svn/ver/151/trunk/patches/libstuff/macosx_deployment_target_default_105.diff
+END
+map_64bit_arches.diff
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/odcctools/!svn/ver/150/trunk/patches/libstuff/map_64bit_arches.diff
+END
+cmd_with_prefix.diff
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repository/odcctools/!svn/ver/159/trunk/patches/libstuff/cmd_with_prefix.diff
+END
+default_arch.diff
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repository/odcctools/!svn/ver/150/trunk/patches/libstuff/default_arch.diff
+END
+sys_types.diff
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repository/odcctools/!svn/ver/159/trunk/patches/libstuff/sys_types.diff
+END

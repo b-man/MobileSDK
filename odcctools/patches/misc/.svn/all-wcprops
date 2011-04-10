@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repository/odcctools/!svn/ver/159/trunk/patches/misc
+END
+ranlibname.diff
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repository/odcctools/!svn/ver/151/trunk/patches/misc/ranlibname.diff
+END
+with_prefix.diff
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repository/odcctools/!svn/ver/159/trunk/patches/misc/with_prefix.diff
+END
+redo_prebinding.nogetattrlist.diff
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repository/odcctools/!svn/ver/159/trunk/patches/misc/redo_prebinding.nogetattrlist.diff
+END
+redo_prebinding.nomalloc.diff
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repository/odcctools/!svn/ver/151/trunk/patches/misc/redo_prebinding.nomalloc.diff
+END
+libtool-ldpath.diff
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/repository/odcctools/!svn/ver/159/trunk/patches/misc/libtool-ldpath.diff
+END
+libtool_lipo_transform.diff
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repository/odcctools/!svn/ver/159/trunk/patches/misc/libtool_lipo_transform.diff
+END
+libtool-pb.diff
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repository/odcctools/!svn/ver/159/trunk/patches/misc/libtool-pb.diff
+END
+bootstrap_h.diff
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repository/odcctools/!svn/ver/159/trunk/patches/misc/bootstrap_h.diff
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repository/odcctools/!svn/ver/159/trunk/patches/otool
+END
+noobjc.diff
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/odcctools/!svn/ver/159/trunk/patches/otool/noobjc.diff
+END
+nolibmstub.diff
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repository/odcctools/!svn/ver/151/trunk/patches/otool/nolibmstub.diff
+END

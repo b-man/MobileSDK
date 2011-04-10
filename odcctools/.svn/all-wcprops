@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/repository/odcctools/!svn/ver/159/trunk
+END
+ChangeLog.odcctools
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/repository/odcctools/!svn/ver/159/trunk/ChangeLog.odcctools
+END
+extract.sh
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repository/odcctools/!svn/ver/159/trunk/extract.sh
+END
+ld64-85.2.1.tar.gz
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/repository/odcctools/!svn/ver/156/trunk/ld64-85.2.1.tar.gz
+END
+cctools-758.tar.gz
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/repository/odcctools/!svn/ver/159/trunk/cctools-758.tar.gz
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/repository/odcctools/!svn/ver/139/trunk/README
+END

@@ -1,0 +1,5 @@
+How to build:
+
+./extract.sh
+
+cd csu && CC=${YOUR_COMPILER} make && make DSTROOT=${YOUR_DESTINATION_ROOTFS} install

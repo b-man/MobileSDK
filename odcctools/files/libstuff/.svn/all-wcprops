@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repository/odcctools/!svn/ver/151/trunk/files/libstuff
+END
+emulated.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/odcctools/!svn/ver/151/trunk/files/libstuff/emulated.c
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repository/odcctools/!svn/ver/151/trunk/files/libstuff/Makefile.in
+END
+apple_version.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repository/odcctools/!svn/ver/151/trunk/files/libstuff/apple_version.c
+END

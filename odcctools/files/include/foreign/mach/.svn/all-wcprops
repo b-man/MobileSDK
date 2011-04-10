@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repository/odcctools/!svn/ver/151/trunk/files/include/foreign/mach
+END
+error.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repository/odcctools/!svn/ver/48/trunk/files/include/foreign/mach/error.h
+END
+mach_init.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/odcctools/!svn/ver/151/trunk/files/include/foreign/mach/mach_init.h
+END
+mach_types.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/odcctools/!svn/ver/48/trunk/files/include/foreign/mach/mach_types.h
+END
+vm_statistics.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repository/odcctools/!svn/ver/151/trunk/files/include/foreign/mach/vm_statistics.h
+END
+kern_return.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repository/odcctools/!svn/ver/48/trunk/files/include/foreign/mach/kern_return.h
+END
+mach_host.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repository/odcctools/!svn/ver/48/trunk/files/include/foreign/mach/mach_host.h
+END
+mach.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/repository/odcctools/!svn/ver/48/trunk/files/include/foreign/mach/mach.h
+END
+vm_map.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repository/odcctools/!svn/ver/48/trunk/files/include/foreign/mach/vm_map.h
+END
+boolean.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repository/odcctools/!svn/ver/48/trunk/files/include/foreign/mach/boolean.h
+END
+mach_traps.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/odcctools/!svn/ver/48/trunk/files/include/foreign/mach/mach_traps.h
+END
+mach_error.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/odcctools/!svn/ver/48/trunk/files/include/foreign/mach/mach_error.h
+END
+port.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/repository/odcctools/!svn/ver/48/trunk/files/include/foreign/mach/port.h
+END
+vm_prot.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repository/odcctools/!svn/ver/48/trunk/files/include/foreign/mach/vm_prot.h
+END
+mach_time.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/odcctools/!svn/ver/151/trunk/files/include/foreign/mach/mach_time.h
+END
+host_info.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/odcctools/!svn/ver/151/trunk/files/include/foreign/mach/host_info.h
+END

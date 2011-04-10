@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repository/odcctools/!svn/ver/159/trunk/patches/ar
+END
+declare_localtime.diff
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repository/odcctools/!svn/ver/151/trunk/patches/ar/declare_localtime.diff
+END
+contents.diff
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repository/odcctools/!svn/ver/151/trunk/patches/ar/contents.diff
+END
+archive.diff
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repository/odcctools/!svn/ver/151/trunk/patches/ar/archive.diff
+END
+ar-printf.diff
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/odcctools/!svn/ver/151/trunk/patches/ar/ar-printf.diff
+END
+ar-ranlibpath.diff
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repository/odcctools/!svn/ver/159/trunk/patches/ar/ar-ranlibpath.diff
+END
+errno.diff
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repository/odcctools/!svn/ver/151/trunk/patches/ar/errno.diff
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repository/odcctools/!svn/ver/159/trunk/patches/include/mach
+END
+machine_armv7.diff
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repository/odcctools/!svn/ver/159/trunk/patches/include/mach/machine_armv7.diff
+END
+machine.diff
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repository/odcctools/!svn/ver/140/trunk/patches/include/mach/machine.diff
+END
