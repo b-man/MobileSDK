@@ -1,0 +1,465 @@
+diff -Naur CoreOSMakefiles-63.old/CHANGES.iOS CoreOSMakefiles-63.new/CHANGES.iOS
+--- CoreOSMakefiles-63.old/CHANGES.iOS	1969-12-31 19:00:00.000000000 -0500
++++ CoreOSMakefiles-63.new/CHANGES.iOS	2011-04-02 23:24:21.000000000 -0400
+@@ -0,0 +1,30 @@
++- Sat Mar 12 23:11:29 EST 2011 - coreosmakefiles (63+ios-0.0.2)
++   Brian McKenzie (mckenzba@gmail.com)
++
++   [Adaptations]:
++    * Moved CoreOS to /var and added symbolic link in it's place to reduce
++      system memory consumption
++    * Removed dependency on xcrun in Commands.make as this is a closed component not available
++      directly to iOS (Xcode/i386 component)
++
++   [Changes]:
++    * Updated command paths in Commands.make
++
++   [Additions]:
++    * Added $(LDID) to Commands.make for code signatures
++    * Added $(DPKG_BUILD) to Commands.make for .deb package building
++    * Added new iPhone section with new UIApplication.make library for simplified on-device
++      cocoa-related development
++
++   [Removals]:
++    * Removed unused #ifdef logic in Commands.make
++
++   [Next Release]:
++    * Make ReleaseControl build projects in $(WD)/Build
++
++- Fri Apr  1 16:24:57 EDT 2011 - coreosmakefiles (63+ios-0.0.3)
++   Brian McKenzie (mckenzba@gmail.com)
++
++   [Additions]:
++    * Changed $(*ROOT) directory paths in ReleaseControl/Common.make to build project in $(WD)/Deploy
++      instead of /tmp/$(ProjectName) for sanity control
+diff -Naur CoreOSMakefiles-63.old/control.in CoreOSMakefiles-63.new/control.in
+--- CoreOSMakefiles-63.old/control.in	1969-12-31 19:00:00.000000000 -0500
++++ CoreOSMakefiles-63.new/control.in	2011-04-06 09:19:58.120390448 -0400
+@@ -0,0 +1,10 @@
++Package: coreosmakefiles
++Version: 63+ios-0.0.3
++Section: development
++Priority: optional
++Maintainer: Brian McKenzie <mckenzba@gmail.com>
++Architecture: iphoneos-arm
++Depends: perl (>= 5.00.0-0), targetconfigs (>= 12.1+ios-1.0.0), developer-cmds, file-cmds, shell-cmds, ldid
++Pre-Depends: findutils
++Description: This package provides the CoreOSMakefile Makefile
++ Framework from OSX to aid in on-device software development.
+diff -Naur CoreOSMakefiles-63.old/iPhone/UIApplication.in CoreOSMakefiles-63.new/iPhone/UIApplication.in
+--- CoreOSMakefiles-63.old/iPhone/UIApplication.in	1969-12-31 19:00:00.000000000 -0500
++++ CoreOSMakefiles-63.new/iPhone/UIApplication.in	2011-03-13 15:17:59.000000000 -0400
+@@ -0,0 +1,67 @@
++#ifdef BSDMAKESTYLE
++#
++# (Created from /Developer/Makefiles/CoreOS/iPhone/UIApplication.make)
++#endif
++
++# IPhone OS UIApplication definitions
++#
++# Copyright (c) 2011, Brian McKenzie <mckenzba@gmail.com>
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without modification, 
++# are permitted provided that the following conditions are met:
++#
++#  * Redistributions of source code must retain the above copyright 
++#    notice, this list of conditions and the following disclaimer.
++#
++#  * Redistributions in binary form must reproduce the above copyright notice, 
++#    this list of conditions and the following disclaimer in the documentation 
++#    and/or other materials provided with the distribution.
++#
++#  * Neither the name of the organization nor the names of its contributors may 
++#    be used to endorse or promote products derived from this software without 
++#    specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
++# EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
++# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
++# IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY 
++# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
++# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF 
++# USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
++# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
++# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
++# EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++
++ifndef CoreOSMakefiles
++  CoreOSMakefiles = $(MAKEFILEPATH)/CoreOS
++endif
++
++include $(CoreOSMakefiles)/Standard/Standard.make
++
++# General compiler flags
++CFLAGS += -fsigned-char -g -ObjC -fobjc-exceptions \
++  -Wall -Wundeclared-selector -Wreturn-type -Wnested-externs \
++  -Wredundant-decls \
++  -Wbad-function-cast \
++  -Wchar-subscripts \
++  -Winline -Wswitch -Wshadow \
++  -Wno-attributes \
++  -D_CTYPE_H_ \
++  -D_BSD_ARM_SETJMP_H \
++  -D_UNISTD_H_
++
++# Include flags
++CFLAGS += \
++  -I/Developer/SDK/Current/Headers
++
++# General linker flags
++LDFLAGS += -lobjc \
++  -F/Developer/SDK/Current/Library/Frameworks \
++  -framework CoreFoundation \
++  -framework Foundation \
++  -framework UIKit \
++  -framework CoreGraphics \
++  -L/usr/lib -lc /usr/lib/libgcc_s.1.dylib \
++  -bind_at_load \
++  -multiply_defined suppress
+diff -Naur CoreOSMakefiles-63.old/Makefile CoreOSMakefiles-63.new/Makefile
+--- CoreOSMakefiles-63.old/Makefile	2009-04-02 16:51:23.000000000 -0400
++++ CoreOSMakefiles-63.new/Makefile	2011-04-11 00:04:29.955784759 -0400
+@@ -1,19 +1,30 @@
+ Project=CoreOSMakefiles
+ 
+-Destination = $(MAKEFILEPATH)/CoreOS
+-BSDMAKEDIR  = /usr/share/mk/CoreOS
+-BSDSUFFIX   = .mk
+-BSDDEFINE   = BSDMAKESTYLE
+-GNUSUFFIX   = .make
+-INBASENAMES = Commands Variables
+-INSUFFIX    = .in
+-STANDARD    = Standard
++##
++# Modified for iOS by Brian McKenzie <mckenzba@gmail.com>
++##
++
++PWD ?= `pwd`
++
++DSTROOT=${PWD}/package
++
++Destination        = $(MAKEFILEPATH)/var/CoreOS
++BSDMAKEDIR         = /usr/share/mk/CoreOS
++BSDSUFFIX          = .mk
++BSDDEFINE          = BSDMAKESTYLE
++GNUSUFFIX          = .make
++INBASENAMES        = Commands Variables
++INSUFFIX           = .in
++STANDARD           = Standard
++IPHONE             = iPhone
++IPHONE_INBASENAMES = UIApplication
+ 
+ install:
+ 	@$(MAKE) installsrc SRCROOT=$(DSTROOT)$(Destination)
+ 	rm -f $(DSTROOT)$(Destination)/Makefile
+ 	mv -f $(DSTROOT)$(Destination)/bin $(DSTROOT)$(MAKEFILEPATH)
+ 	install -d $(DSTROOT)$(BSDMAKEDIR)/$(STANDARD)
++	install -d $(DSTROOT)$(BSDMAKEDIR)/$(IPHONE)
+ 	@set -x && \
+ 	    for i in $(INBASENAMES); do \
+ 		unifdef -U$(BSDDEFINE) -t $(DSTROOT)$(Destination)/$(STANDARD)/$$i$(INSUFFIX) > $(DSTROOT)$(Destination)/$(STANDARD)/$$i$(GNUSUFFIX); \
+@@ -22,13 +33,35 @@
+ 		[ $$? -eq 1 ] || exit 1; \
+ 		$(RM) -f $(DSTROOT)$(Destination)/$(STANDARD)/$$i$(INSUFFIX) || exit 1; \
+ 	    done
++	@set -x && \
++            for i in $(IPHONE_INBASENAMES); do \
++                unifdef -U$(BSDDEFINE) -t $(DSTROOT)$(Destination)/$(IPHONE)/$$i$(INSUFFIX) > $(DSTROOT)$(Destination)/$(IPHONE)/$$i$(GNUSUFFIX); \
++                [ $$? -eq 1 ] || exit 1; \
++                unifdef -D$(BSDDEFINE) -t $(DSTROOT)$(Destination)/$(IPHONE)/$$i$(INSUFFIX) > $(DSTROOT)$(BSDMAKEDIR)/$(IPHONE)/$$i$(BSDSUFFIX); \
++                [ $$? -eq 1 ] || exit 1; \
++                $(RM) -f $(DSTROOT)$(Destination)/$(IPHONE)/$$i$(INSUFFIX) || exit 1; \
++            done
++
++	# Create package structure
++	ln -sv /var/CoreOS $(DSTROOT)/CoreOS
++	install -d $(DSTROOT)/DEBIAN
++	install -m 644 $(PWD)/control.in $(DSTROOT)/DEBIAN/control
++	install -m 755 $(PWD)/postinst.in $(DSTROOT)/DEBIAN/postinst
++
++	# Clean up
++	rm -rf $(DSTROOT)/var/CoreOS/package
++	rm -rf $(DSTROOT)/var/CoreOS/CoreOS
++
++	# Build package
++	dpkg --build $(DSTROOT) coreosmakefiles.deb
+ 
+ installhdrs:
+ 	$(_v) echo No headers to install
+ 
+ installsrc:
+ 	install -d "$(SRCROOT)"
+-	rsync -a --exclude=.svn ./ "$(SRCROOT)"
++	rsync -a --exclude=.svn --exclude=postinst.in --exclude=control.in ./ "$(SRCROOT)"
+ 
+ clean:
+-	$(_v) echo Nothing to clean
++	rm -rf $(DSTROOT)
++	rm -rf *.deb
+diff -Naur CoreOSMakefiles-63.old/postinst.in CoreOSMakefiles-63.new/postinst.in
+--- CoreOSMakefiles-63.old/postinst.in	1969-12-31 19:00:00.000000000 -0500
++++ CoreOSMakefiles-63.new/postinst.in	2011-01-17 20:51:42.000000000 -0500
+@@ -0,0 +1,5 @@
++#!/bin/bash
++
++find /var/CoreOS -follow -type d -exec chmod 755 {} \;
++
++exit 0
+diff -Naur CoreOSMakefiles-63.old/ReleaseControl/Common.make CoreOSMakefiles-63.new/ReleaseControl/Common.make
+--- CoreOSMakefiles-63.old/ReleaseControl/Common.make	2008-10-14 19:09:37.000000000 -0400
++++ CoreOSMakefiles-63.new/ReleaseControl/Common.make	2011-04-02 23:25:06.000000000 -0400
+@@ -49,10 +49,10 @@
+ RC_RELEASE = unknown
+ RC_VERSION = unknown
+ 
+-SRCROOT = /tmp/$(ProjectName)/Sources
+-OBJROOT = /tmp/$(ProjectName)/Build
+-SYMROOT = /tmp/$(ProjectName)/Debug
+-DSTROOT = /tmp/$(ProjectName)/Release
++SRCROOT = $(WD)/Deploy/Sources
++OBJROOT = $(WD)/Deploy/Build
++SYMROOT = $(WD)/Deploy/Debug
++DSTROOT = $(WD)/Deploy/Release
+ 
+ ##
+ # My variables
+diff -Naur CoreOSMakefiles-63.old/Standard/Commands.in CoreOSMakefiles-63.new/Standard/Commands.in
+--- CoreOSMakefiles-63.old/Standard/Commands.in	2009-04-02 16:51:23.000000000 -0400
++++ CoreOSMakefiles-63.new/Standard/Commands.in	2011-03-13 15:16:13.000000000 -0400
+@@ -30,6 +30,10 @@
+ ##
+ 
+ ##
++# Modified for iOS by Brian McKenzie <mckenzba@gmail.com>
++##
++
++##
+ # Make sure that we're using sh
+ ##
+ SHELL=/bin/sh
+@@ -47,181 +51,54 @@
+ ZCAT       = $(GZCAT)
+ 
+ ##
+-# How to find certain commands
++# Packaging Commands
+ ##
+-PATH_OF_COMMAND = xcrun -find
++DPKG_BUILD = /usr/bin/dpkg --build
++
++##
++# Code Signature Commands
++##
++LDID     = /usr/bin/ldid
+ 
+ ##
+ # Compilers and Binary Tools
+ ##
+-#ifdef BSDMAKESTYLE
+-AR      != $(PATH_OF_COMMAND) ar
+-#else
+-AR      = $(shell $(PATH_OF_COMMAND) ar)
+-#endif
+-#ifdef BSDMAKESTYLE
+-AS      != $(PATH_OF_COMMAND) as
+-#else
+-AS      = $(shell $(PATH_OF_COMMAND) as)
+-#endif
+-ARSH    = $(MAKEFILEPATH)/bin/ar.sh
+-#ifdef BSDMAKESTYLE
+-BISON   != $(PATH_OF_COMMAND) bison
+-#else
+-BISON   = $(shell $(PATH_OF_COMMAND) bison)
+-#endif
+-#ifdef BSDMAKESTYLE
+-BSDMAKE != $(PATH_OF_COMMAND) bsdmake
+-#else
+-BSDMAKE = $(shell $(PATH_OF_COMMAND) bsdmake)
+-#endif
+-#ifdef BSDMAKESTYLE
+-CC      != $(PATH_OF_COMMAND) cc
+-#else
+-CC      = $(shell $(PATH_OF_COMMAND) cc)
+-#endif
+-#ifdef BSDMAKESTYLE
+-C89     != $(PATH_OF_COMMAND) c89
+-#else
+-C89     = $(shell $(PATH_OF_COMMAND) c89)
+-#endif
+-#ifdef BSDMAKESTYLE
+-C99     != $(PATH_OF_COMMAND) c99
+-#else
+-C99     = $(shell $(PATH_OF_COMMAND) c99)
+-#endif
+-#ifdef BSDMAKESTYLE
+-CPP     != $(PATH_OF_COMMAND) cpp
+-#else
+-CPP     = $(shell $(PATH_OF_COMMAND) cpp)
+-#endif
+-#ifdef BSDMAKESTYLE
+-CTAGS   != $(PATH_OF_COMMAND) ctags
+-#else
+-CTAGS   = $(shell $(PATH_OF_COMMAND) ctags)
+-#endif
+-#ifdef BSDMAKESTYLE
+-Cxx     != $(PATH_OF_COMMAND) c++
+-#else
+-Cxx     = $(shell $(PATH_OF_COMMAND) c++)
+-#endif
+-CXX     = $(Cxx)
+-#ifdef BSDMAKESTYLE
+-DSYMUTIL != $(PATH_OF_COMMAND) dsymutil
+-#else
+-DSYMUTIL = $(shell $(PATH_OF_COMMAND) dsymutil)
+-#endif
+-#ifdef BSDMAKESTYLE
+-DTRACE  != $(PATH_OF_COMMAND) dtrace
+-#else
+-DTRACE  = $(shell $(PATH_OF_COMMAND) dtrace)
+-#endif
+-#ifdef BSDMAKESTYLE
+-ETAGS   != $(PATH_OF_COMMAND) etags
+-#else
+-ETAGS   = $(shell $(PATH_OF_COMMAND) etags)
+-#endif
+-#ifdef BSDMAKESTYLE
+-FILE    != $(PATH_OF_COMMAND) file
+-#else
+-FILE    = $(shell $(PATH_OF_COMMAND) file)
+-#endif
+-#ifdef BSDMAKESTYLE
+-FLEX    != $(PATH_OF_COMMAND) flex
+-#else
+-FLEX    = $(shell $(PATH_OF_COMMAND) flex)
+-#endif
+-#ifdef BSDMAKESTYLE
+-GM4     != $(PATH_OF_COMMAND) gm4
+-#else
+-GM4     = $(shell $(PATH_OF_COMMAND) gm4)
+-#endif
+-#ifdef BSDMAKESTYLE
+-GNUMAKE != $(PATH_OF_COMMAND) gnumake
+-#else
+-GNUMAKE = $(shell $(PATH_OF_COMMAND) gnumake)
+-#endif
+-#ifdef BSDMAKESTYLE
+-LD      != $(PATH_OF_COMMAND) ld
+-#else
+-LD      = $(shell $(PATH_OF_COMMAND) ld)
+-#endif
+-LEX     = $(FLEX)
+-#ifdef BSDMAKESTYLE
+-LIBTOOL != $(PATH_OF_COMMAND) libtool
+-#else
+-LIBTOOL = $(shell $(PATH_OF_COMMAND) libtool)
+-#endif
+-#ifdef BSDMAKESTYLE
+-LIPO    != $(PATH_OF_COMMAND) lipo
+-#else
+-LIPO    = $(shell $(PATH_OF_COMMAND) lipo)
+-#endif
+-#ifdef BSDMAKESTYLE
+-LORDER  != $(PATH_OF_COMMAND) lorder
+-#else
+-LORDER  = $(shell $(PATH_OF_COMMAND) lorder)
+-#endif
+-#ifdef BSDMAKESTYLE
+-M4      != $(PATH_OF_COMMAND) m4
+-#else
+-M4      = $(shell $(PATH_OF_COMMAND) m4)
+-#endif
+-#ifdef BSDMAKESTYLE
+-MIG     != $(PATH_OF_COMMAND) mig
+-#else
+-MIG     = $(shell $(PATH_OF_COMMAND) mig)
+-#endif
+-#ifdef BSDMAKESTYLE
+-NM      != $(PATH_OF_COMMAND) nm
+-#else
+-NM      = $(shell $(PATH_OF_COMMAND) nm)
+-#endif
+-#ifdef BSDMAKESTYLE
+-OTOOL   != $(PATH_OF_COMMAND) otool
+-#else
+-OTOOL   = $(shell $(PATH_OF_COMMAND) otool)
+-#endif
+-#ifdef BSDMAKESTYLE
+-RANLIB  != $(PATH_OF_COMMAND) ranlib
+-#else
+-RANLIB  = $(shell $(PATH_OF_COMMAND) ranlib)
+-#endif
+-#ifdef BSDMAKESTYLE
+-RPCGEN  != $(PATH_OF_COMMAND) rpcgen
+-#else
+-RPCGEN  = $(shell $(PATH_OF_COMMAND) rpcgen)
+-#endif
+-#ifdef BSDMAKESTYLE
+-SIZE    != $(PATH_OF_COMMAND) size
+-#else
+-SIZE    = $(shell $(PATH_OF_COMMAND) size)
+-#endif
+-#ifdef BSDMAKESTYLE
+-STRINGS != $(PATH_OF_COMMAND) strings
+-#else
+-STRINGS = $(shell $(PATH_OF_COMMAND) strings)
+-#endif
+-#ifdef BSDMAKESTYLE
+-STRIP   != $(PATH_OF_COMMAND) strip
+-#else
+-STRIP   = $(shell $(PATH_OF_COMMAND) strip)
+-#endif
+-#ifdef BSDMAKESTYLE
+-TCONF   != $(PATH_OF_COMMAND) tconf
+-#else
+-TCONF   = $(shell $(PATH_OF_COMMAND) tconf)
+-#endif
+-#ifdef BSDMAKESTYLE
+-UNIFDEF != $(PATH_OF_COMMAND) unifdef
+-#else
+-UNIFDEF = $(shell $(PATH_OF_COMMAND) unifdef)
+-#endif
+-#ifdef BSDMAKESTYLE
+-YACC    != $(PATH_OF_COMMAND) yacc
+-#else
+-YACC    = $(shell $(PATH_OF_COMMAND) yacc)
+-#endif
++AR       = /usr/bin/ar
++AS       = /usr/bin/as
++ARSH     = /bin/ar.sh
++BISON    = /usr/bin/bison
++BSDMAKE  = /usr/bin/bsdmake
++CC       = /usr/bin/gcc
++C89      = /usr/bin/gcc -std=c89
++C99      = /usr/bin/gcc -std=c99
++CPP      = /usr/bin/g++
++CTAGS    = /usr/bin/ctags
++Cxx      = /usr/bin/g++
++CXX      = $(Cxx)
++DSYMUTIL = /usr/bin/dsymutil
++DTRACE   = /usr/bin/dtrace
++ETAGS    = /usr/bin/etags
++FILE     = /usr/bin/file
++FLEX     = /usr/bin/flex
++GM4      = /usr/bin/gm4
++GNUMAKE  = /usr/bin/gnumake
++LD       = /usr/bin/ld
++LEX      = $(FILE)
++LIBTOOL  = /usr/bin/libtool
++LIPO     = /usr/bin/lipo
++LORDER   = /usr/bin/lorder
++M4       = /usr/bin/m4
++MIG      = /usr/bin/mig
++NM       = /usr/bin/nm
++OTOOL    = /usr/bin/otool
++RANLIB   = /usr/bin/ranlib
++RPCGEN   = /usr/bin/rpcgen
++SIZE     = /usr/bin/size
++STRINGS  = /usr/bin/strings
++STRIP    = /usr/bin/strip
++TCONF    = /usr/bin/tconf
++UNIFDEF  = /usr/bin/unifdef
++YACC     = /usr/bin/yacc
+ 
+ ##
+ # File Commands
